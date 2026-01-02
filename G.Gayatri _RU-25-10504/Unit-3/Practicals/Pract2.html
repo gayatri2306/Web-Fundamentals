@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JS Logic & Arithmetic Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .history-box {
+            margin-top: 20px;
+            border-top: 2px solid #eee;
+            padding-top: 10px;
+        }
+
+        .log-item {
+            font-size: 0.9rem;
+            color: #555;
+            border-bottom: 1px solid #f9f9f9;
+            padding: 4px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Smart Calculator</h2>
+
+        <input type="number" id="val1" placeholder="Enter first number">
+        <input type="number" id="val2" placeholder="Enter second number">
+
+        <button onclick="runLogic()">Calculate & Run Loop</button>
+
+        <p id="status"><strong>Status:</strong> Awaiting input...</p>
+
+        <div class="history-box">
+            <h3>Calculation History (Loop Demo)</h3>
+            <div id="historyLog"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global array to store history for the loop demo
+        let history = [];
+
+        function runLogic() {
+            // 1. Get Values
+            const n1 = parseFloat(document.getElementById('val1').value);
+            const n2 = parseFloat(document.getElementById('val2').value);
+            const statusText = document.getElementById('status');
+            const logDiv = document.getElementById('historyLog');
+
+            // 2. CONDITIONAL STATEMENTS (if/else)
+            if (isNaN(n1) || isNaN(n2)) {
+                statusText.style.color = "red";
+                statusText.innerHTML = "Status: Error! Please enter two numbers.";
+                return;
+            }
+
+            let sum = n1 + n2;
+            statusText.style.color = "green";
+
+            // Nested Conditional
+            if (sum > 100) {
+                statusText.innerHTML = "Status: Large Result (" + sum + ")";
+            } else {
+                statusText.innerHTML = "Status: Small Result (" + sum + ")";
+            }
+
+            // Add result to history array
+            history.push(`Added ${n1} + ${n2} = ${sum}`);
+
+            // 3. LOOP DEMO (for loop)
+            // We clear the box and rebuild the list using a loop
+            logDiv.innerHTML = ""; // Clear old display
+
+            for (let i = 0; i < history.length; i++) {
+                let item = document.createElement('div');
+                item.className = "log-item";
+                item.innerText = (i + 1) + ". " + history[i];
+                logDiv.appendChild(item);
+            }
+
+            /* Note: We could also use a While loop here:
+               let j = 0;
+               while (j < history.length) { ... j++; }
+            */
+        }
+    </script>
+
+</body>
+
+</html>

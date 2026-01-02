@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Array Methods Demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: #f0f2f5;
+        }
+
+        .display {
+            font-size: 2rem;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-weight: bold;
+        }
+
+        .btn-add {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .btn-remove {
+            background-color: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Array Visualizer</h1>
+    <div id="array-view" class="display">[ "🍎", "🍌", "🍇" ]</div>
+
+    <div class="controls">
+        <button class="btn-add" onclick="doUnshift()">unshift("🍓")</button>
+        <button class="btn-remove" onclick="doShift()">shift()</button>
+        <br><br>
+        <button class="btn-add" onclick="doPush()">push("🍍")</button>
+        <button class="btn-remove" onclick="doPop()">pop()</button>
+    </div>
+
+    <script>
+        let fruits = ["🍎", "🍌", "🍇"];
+        const view = document.getElementById('array-view');
+
+        function updateUI() {
+            view.innerText = JSON.stringify(fruits, null, 2);
+        }
+
+        function doPush() {
+            fruits.push("🍍");
+            updateUI();
+        }
+
+        function doPop() {
+            fruits.pop();
+            updateUI();
+        }
+
+        function doUnshift() {
+            fruits.unshift("🍓");
+            updateUI();
+        }
+
+        function doShift() {
+            fruits.shift();
+            updateUI();
+        }
+    </script>
+</body>
+
+</html>

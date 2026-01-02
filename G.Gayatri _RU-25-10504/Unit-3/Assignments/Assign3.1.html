@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Scope & Hoisting Demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d63384;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Var, Let, and Const Comparison</h1>
+        <p>Open the <strong>Browser Console</strong> (F12 or Right Click > Inspect > Console) to see the output of the
+            JavaScript code.</p>
+
+        <ul>
+            <li><code>var</code> is function-scoped and hoisted with <code>undefined</code>.</li>
+            <li><code>let</code>/<code>const</code> are block-scoped and stay in the Temporal Dead Zone until
+                initialized.</li>
+        </ul>
+    </div>
+
+    <script>
+        // --- 1. HOISTING DEMO ---
+        console.log("--- Hoisting ---");
+
+        console.log("var value before declaration:", myVar); // undefined
+        var myVar = "I am a var";
+
+        try {
+            console.log(myLet); // This will fail
+        } catch (e) {
+            console.log("let error:", e.message); // Cannot access 'myLet' before initialization
+        }
+        let myLet = "I am a let";
+
+
+        // --- 2. SCOPE DEMO ---
+        console.log("\n--- Scope ---");
+
+        if (true) {
+            var leakedVar = "I escaped the block!";
+            let blockedLet = "I am trapped in here!";
+            console.log("Inside block:", blockedLet);
+        }
+
+        console.log("Outside block (var):", leakedVar); // Works
+        try {
+            console.log("Outside block (let):", blockedLet);
+        } catch (e) {
+            console.log("Outside block error:", e.message); // blockedLet is not defined
+        }
+
+
+        // --- 3. CONST MUTATION ---
+        console.log("\n--- Const Mutation ---");
+
+        const person = { name: "JS Developer" };
+        person.name = "Gemini"; // Modifying a property is allowed
+        console.log("Const object modified:", person.name);
+
+        try {
+            person = { name: "Someone Else" }; // Reassignment is NOT allowed
+        } catch (e) {
+            console.log("Const reassignment error:", e.message);
+        }
+    </script>
+</body>
+
+</html>

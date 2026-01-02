@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Control Flow Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .output {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>JavaScript Control Flow Visualizer</h2>
+
+    <div class="card">
+        <h3>1. The For Loop</h3>
+        <p>Best for: Running code a specific number of times.</p>
+        <pre>for (let i = 1; i <= 3; i++) { ... }</pre>
+        <button onclick="runForLoop()">Run For Loop</button>
+        <div id="for-out" class="output"></div>
+    </div>
+
+    <div class="card">
+        <h3>2. The While Loop</h3>
+        <p>Best for: Running until a condition is no longer met. (Checks condition <strong>before</strong> running)</p>
+        <pre>while (count < 3) { ... }</pre>
+        <button onclick="runWhileLoop()">Run While Loop</button>
+        <div id="while-out" class="output"></div>
+    </div>
+
+    <div class="card">
+        <h3>3. The Do...While Loop</h3>
+        <p>Best for: Ensuring the code runs <strong>at least once</strong>.</p>
+        <pre>do { ... } while (condition);</pre>
+        <button onclick="runDoWhileLoop()">Run Do-While Loop</button>
+        <div id="do-out" class="output"></div>
+    </div>
+
+    <script>
+        // 1. FOR LOOP: Known number of iterations
+        function runForLoop() {
+            let out = document.getElementById('for-out');
+            out.innerHTML = "Result: ";
+            for (let i = 1; i <= 3; i++) {
+                out.innerHTML += `Iteration ${i} | `;
+            }
+        }
+
+        // 2. WHILE LOOP: Condition checked first
+        function runWhileLoop() {
+            let out = document.getElementById('while-out');
+            let count = 1;
+            out.innerHTML = "Result: ";
+            while (count <= 3) {
+                out.innerHTML += `Count ${count} | `;
+                count++;
+            }
+        }
+
+        // 3. DO...WHILE LOOP: Executes then checks
+        function runDoWhileLoop() {
+            let out = document.getElementById('do-out');
+            let score = 10; // Condition is score < 5 (False)
+            out.innerHTML = "Result: ";
+
+            do {
+                out.innerHTML += "I ran once even though 10 is not less than 5!";
+                score++;
+            } while (score < 5);
+        }
+    </script>
+</body>
+
+</html>

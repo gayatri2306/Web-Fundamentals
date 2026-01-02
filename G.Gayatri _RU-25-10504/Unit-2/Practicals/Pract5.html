@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Div and span Layout</title>
+        <style>
+            .container{
+                width: 80;
+                margin: 20px auto;
+                padding: 2px solid #333;
+                background-color: azure;
+
+            }
+
+            .header{
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                color: aqua;
+                background-color: darkgreen;
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+            }
+
+            .content{
+                font-size: 18px;
+                line-height: 1.5;
+            }
+            .highlight {
+                color: red;
+                font-weight: bold;
+
+
+            }
+
+            .footer{
+                text-align: center;
+                font-size: 14px;
+                color: #777;
+                margin-top: 20px;
+
+            }
+
+            .inline-spans span {
+                display: inline-block;
+                padding: 5px 10px;
+                margin: 5px;
+                border: 1px solid #4CAF50;
+                border-radius: 3px;
+                background-color: #e0f7fa;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+
+            <div class="header">My stylish layout</div>
+
+
+            <div class="content">
+
+                Welcome to my <span class="highlight">example page</span>using div and span elements.
+
+                Here are some inline items:
+
+                <div class="inline-spans">
+                     
+                    <span>Item 1</span><br><br>
+                    <span>Item 2</span><br><br>
+                    <span>Item 3</span><br><br>
+            </div>
+        </div>
+
+        <div class="footer">My website</div>
+    </body>
+</html>

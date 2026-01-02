@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Event Delegation Demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #eee;
+            margin: 5px 0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 4px;
+        }
+
+        .delete-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Shopping List</h2>
+    <input type="text" id="item-input" placeholder="Enter item...">
+    <button id="add-btn">Add Item</button>
+
+    <ul id="item-list">
+        <li>Milk <button class="delete-btn">Delete</button></li>
+        <li>Eggs <button class="delete-btn">Delete</button></li>
+    </ul>
+
+    <script>
+        const list = document.getElementById('item-list');
+        const input = document.getElementById('item-input');
+        const addBtn = document.getElementById('add-btn');
+
+        // 1. ADDING ITEMS (Normal listener)
+        addBtn.addEventListener('click', () => {
+            if (input.value.trim() !== "") {
+                const li = document.createElement('li');
+                li.innerHTML = `${input.value} <button class="delete-btn">Delete</button>`;
+                list.appendChild(li);
+                input.value = "";
+            }
+        });
+
+        // 2. EVENT DELEGATION (The magic)
+        // We listen on the UL, not the individual buttons
+        list.addEventListener('click', (event) => {
+            // Check if the actual thing clicked was a delete button
+            if (event.target.classList.contains('delete-btn')) {
+                const itemToRemove = event.target.parentElement;
+                list.removeChild(itemToRemove);
+                console.log("Deleted an item via delegation!");
+            }
+        });
+    </script>
+</body>
+
+</html>

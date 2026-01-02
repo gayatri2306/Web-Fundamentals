@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulation Demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .box {
+            border: 2px solid #333;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main-container" class="box">
+        <h2 id="title">Original Title</h2>
+        <p class="description">This is the first description paragraph.</p>
+        <p class="description">This is the second description paragraph.</p>
+    </div>
+
+    <button onclick="changeContent()">Modify the DOM</button>
+
+    <script>
+        function changeContent() {
+            // 1. SELECTING
+            const title = document.getElementById('title');
+            const paragraphs = document.querySelectorAll('.description');
+
+            title.innerText = "Title changed with <u>innerText</u>";
+            paragraphs[0].innerHTML = "First paragraph changed with <u>innerHTML</u>";
+
+            // 4. APPLYING STYLES
+            paragraphs[1].style.backgroundColor = "#f1c40f";
+            paragraphs[1].innerText = "Second paragraph just got a background change!";
+        }
+    </script>
+</body>
